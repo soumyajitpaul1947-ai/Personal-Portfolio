@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soumyajit's Portfolio</title>
+    <meta
+      name="description"
+      content="Professional interactive portfolio showcasing skills, certificates, and projects."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#home">Soumyajit</a>
+        <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav">
+          <a href="#home">Home</a>
+          <a href="#skills">Skills</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="#social">Social</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Hello, I am</p>
+            <h1>Soumyajit — Productive Designer & Developer</h1>
+            <p class="hero-description">
+              I build polished digital experiences with a strong focus on UI,
+              accessibility, and performance. Explore my skills, certificates,
+              and projects below.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">See Work</a>
+              <a class="button button-secondary" href="#contact">Get in Touch</a>
+            </div>
+            <p class="interaction-hint">Hover, click, and scroll to discover hidden interactions across the page.</p>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <div class="hero-card-tag">Featured skill</div>
+              <h2>Design systems & product-led interfaces</h2>
+              <p>
+                Sophisticated layouts, thoughtful interactions, and real-time
+                polish that help brands stand out.
+              </p>
+              <div class="hero-stats">
+                <div>
+                  <strong>9+</strong>
+                  <span>Design tools</span>
+                </div>
+                <div>
+                  <strong>7+</strong>
+                  <span>Completed projects</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="container section-heading">
+          <p class="section-label">Skills</p>
+          <h2>Core strengths I bring to every project.</h2>
+        </div>
+        <div class="container skills-grid" id="skillsGrid"></div>
+      </section>
+
+      <section class="section section-alt" id="certificates">
+        <div class="container section-heading">
+          <p class="section-label">Certificates</p>
+          <h2>Recognized achievements from trusted programs.</h2>
+        </div>
+        <div class="container section-unlock-overlay" id="certificateUnlock">
+          <p class="unlock-title">Unlock certificate vault</p>
+          <p class="unlock-description">Type the code line below to reveal your certificates.</p>
+          <div class="code-game-row">
+            <input class="code-game-input" id="certificateCodeInput" type="text" placeholder="console.log('cert')" aria-label="Enter code to unlock certificates" />
+            <button class="button button-primary" id="certificateCodeBtn" type="button">Unlock</button>
+          </div>
+          <p class="unlock-progress" id="certificateGameProgress">Hint: use console.log and the word cert.</p>
+        </div>
+        <div class="section-inner locked" id="certificateContent">
+          <div class="container certificate-carousel">
+            <div class="certificates-grid" id="certificatesGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container section-heading">
+          <p class="section-label">Projects</p>
+          <h2>Interactive projects that demonstrate impact.</h2>
+        </div>
+        <div class="container section-unlock-overlay" id="projectUnlock">
+          <p class="unlock-title">Unlock project gallery</p>
+          <p class="unlock-description">Choose the right word to begin the project reveal.</p>
+          <div class="project-puzzle-options">
+            <button class="button puzzle-btn" type="button" data-answer="launch">Launch</button>
+            <button class="button puzzle-btn" type="button" data-answer="pause">Pause</button>
+            <button class="button puzzle-btn" type="button" data-answer="hide">Hide</button>
+          </div>
+          <p class="unlock-progress" id="projectGameStatus">What word means “to begin”?</p>
+        </div>
+        <div class="section-inner locked" id="projectContent">
+          <div class="container project-filters" id="projectFilters"></div>
+          <div class="container projects-grid" id="projectsGrid"></div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="contact">
+        <div class="container contact-grid">
+          <div>
+            <p class="section-label">Contact</p>
+            <h2>Ready to collaborate or review my work?</h2>
+            <p>
+              I’m available for freelance work, contract opportunities, and new
+              product challenges. Let’s connect and bring your vision to life.
+            </p>
+            <div class="contact-card">
+              <strong>Email</strong>
+              <a href="mailto:soumyajitpaul1947@gmail.com">soumyajitpaul1947@gmail.com</a>
+            </div>
+            <div class="contact-card">
+              <strong>Portfolio</strong>
+              <a href="#projects">Explore projects</a>
+            </div>
+          </div>
+          <form class="contact-form" action="mailto:soumyajitpaul1947@gmail.com" method="post" enctype="text/plain">
+            <label>
+              Name
+              <input type="text" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="your@email.com" required />
+            </label>
+            <label>
+              Message
+              <textarea rows="6" placeholder="Tell me about your project"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="social">
+        <div class="container section-heading">
+          <p class="section-label">Social</p>
+          <h2>Follow my work and connect with me online.</h2>
+        </div>
+        <div class="container social-grid">
+          <button class="social-card social-door" data-link="https://www.linkedin.com/in/soumyajit-paul-ai/">
+            <span class="door-handle"></span>
+            <strong>LinkedIn</strong>
+            <p>Click to open the door and discover professional updates.</p>
+          </button>
+          <button class="social-card social-door" data-link="https://github.com/soumyajitpaul1947-ai">
+            <span class="door-handle"></span>
+            <strong>GitHub</strong>
+            <p>Click to open the door and explore code and open-source.</p>
+          </button>
+          <button class="social-card social-door" data-link="https://www.instagram.com/soumyajit_clicks/">
+            <span class="door-handle"></span>
+            <strong>Instagram</strong>
+            <p>Click to open the door and view visual storytelling.</p>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; 2026 Soumyajit. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#home">Top</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal-overlay" id="projectModal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="modal-close" id="closeModal" aria-label="Close project details">×</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <div class="certificate-modal-overlay" id="certificateModalOverlay" aria-hidden="true">
+      <div class="certificate-modal-card" role="dialog" aria-modal="true" aria-labelledby="certificateModalTitle">
+        <div class="certificate-modal-header">
+          <h2 id="certificateModalTitle">Certificate preview</h2>
+          <button class="modal-close" id="certificateModalClose" aria-label="Close certificate preview">×</button>
+        </div>
+        <img id="certificateModalImage" src="" alt="Certificate preview" />
+      </div>
+    </div>
+
+    <div class="custom-cursor" id="customCursor"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
