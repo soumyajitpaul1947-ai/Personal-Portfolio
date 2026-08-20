@@ -24,10 +24,113 @@ body {
   margin: 0;
   min-height: 100vh;
   cursor: none;
+  overflow-x: hidden;
   background: radial-gradient(circle at top, rgba(124, 58, 237, 0.15), transparent 35%),
     linear-gradient(180deg, #06080f 0%, #090b10 55%, #05070b 100%);
   color: var(--text);
 }
+
+.scroll-sphere {
+  position: fixed;
+  top: 16vh;
+  right: clamp(-11rem, -8vw, -4rem);
+  width: clamp(18rem, 38vw, 34rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.72;
+  background: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.72) 0 1%, transparent 9%),
+    radial-gradient(circle at 38% 34%, #a78bfa 0, #6d28d9 28%, #312e81 58%, #111827 78%, #05070b 100%);
+  box-shadow: -30px 22px 80px rgba(124, 58, 237, 0.25), inset -35px -28px 70px rgba(0, 0, 0, 0.72);
+  transform: translate3d(var(--sphere-x, 0px), var(--sphere-y, 0px), 0) rotate(var(--sphere-rotation, 0deg));
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+
+.scroll-sphere::before,
+.scroll-sphere::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  inset: 0;
+}
+
+.scroll-sphere::before {
+  background: repeating-linear-gradient(115deg, transparent 0 16px, rgba(196, 181, 253, 0.13) 17px 18px, transparent 19px 34px);
+  mix-blend-mode: screen;
+  opacity: 0.42;
+  transform: rotate(-18deg) scale(1.12);
+  animation: sphereSurface 18s linear infinite;
+}
+
+.scroll-sphere::after {
+  border: 1px solid rgba(196, 181, 253, 0.25);
+  box-shadow: 0 0 35px rgba(167, 139, 250, 0.18);
+}
+
+.sphere-core,
+.sphere-ring,
+.sphere-particle {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.sphere-core {
+  inset: 13%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.2), transparent 13%), repeating-radial-gradient(circle at 45% 45%, transparent 0 18px, rgba(196, 181, 253, 0.1) 19px 20px, transparent 21px 32px);
+  mix-blend-mode: screen;
+  animation: spherePulse 7s ease-in-out infinite;
+}
+
+.sphere-ring {
+  inset: -7%;
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  border-radius: 50%;
+  transform: rotateX(68deg) rotateZ(18deg);
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.2);
+}
+
+.sphere-ring-one {
+  animation: sphereOrbit 11s linear infinite;
+}
+
+.sphere-ring-two {
+  inset: 7%;
+  opacity: 0.46;
+  transform: rotateY(68deg) rotateZ(-24deg);
+  animation: sphereOrbitReverse 15s linear infinite;
+}
+
+.sphere-particle {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #ddd6fe;
+  box-shadow: 0 0 16px 4px rgba(196, 181, 253, 0.5);
+}
+
+.sphere-particle-one {
+  top: 17%;
+  left: 74%;
+  animation: particleDrift 6s ease-in-out infinite;
+}
+
+.sphere-particle-two {
+  top: 68%;
+  left: 16%;
+  width: 0.3rem;
+  height: 0.3rem;
+  animation: particleDrift 8s ease-in-out 1s infinite reverse;
+}
+
+@keyframes sphereSurface { to { transform: rotate(342deg) scale(1.12); } }
+@keyframes spherePulse { 50% { transform: scale(1.04); opacity: 0.7; } }
+@keyframes sphereOrbit { to { transform: rotateX(68deg) rotateZ(378deg); } }
+@keyframes sphereOrbitReverse { to { transform: rotateY(68deg) rotateZ(-384deg); } }
+@keyframes particleDrift { 50% { transform: translate(12px, -16px) scale(1.35); opacity: 0.55; } }
 
 input,
 textarea {
@@ -52,6 +155,12 @@ textarea {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(10, 14, 23, 0.92);
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .header-inner {
@@ -266,6 +375,32 @@ textarea {
 .hero h1 {
   margin: 0;
   line-height: 1.05;
+}
+
+.glitch-heading {
+  position: relative;
+  text-shadow: 0 0 18px rgba(167, 139, 250, 0.14);
+  animation: headingBreath 8s ease-in-out infinite;
+}
+
+@keyframes headingBreath {
+  0%, 100% { text-shadow: 0 0 18px rgba(167, 139, 250, 0.1); }
+  50% { text-shadow: 0 0 24px rgba(103, 232, 249, 0.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-sphere,
+  .glitch-heading,
+  .sphere-core,
+  .sphere-ring,
+  .sphere-particle {
+    animation: none;
+    transition: none;
+  }
 }
 
 .hero {
@@ -790,6 +925,22 @@ textarea {
 .contact-form {
   display: grid;
   gap: 1rem;
+}
+
+.contact-form-status {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-form-status.is-error {
+  color: #fda4af;
+}
+
+.contact-form-status.is-success {
+  color: #86efac;
 }
 
 .contact-form label {

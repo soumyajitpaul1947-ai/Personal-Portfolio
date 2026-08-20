@@ -7,62 +7,102 @@ const skills = [
 
 const certificates = [
   {
-    title: 'Front-End Web Developer',
+    title: 'Machine Learning with Python',
+    issuer: 'Devtown',
+    date: '2026',
+    description: 'Successfully completed the "Machine Learning with Python" course by Devtown.',
+    proofImage:
+      'Certificates\\ML mastery.jpg',
+  },
+  {
+    title: 'Prompt Engineering',
+    issuer: 'Infosys',
+    date: '2025',
+    description: 'Certificate for successfully completing the “Prompt Engineering for Developers” course from Infosys Springboard.',
+    proofImage:
+      'Certificates\\Prompt Engineering.jpg',
+  },
+  {
+    title: 'Vibe Coding 101',
+    issuer: 'Replit',
+    date: '2025',
+    description: 'Completed "Vibe Coding 101 with Replit" by Replit.',
+    proofImage:
+      'Certificates\\Vibe coding 101.jpg',
+  },
+  {
+    title: 'Introduction to Cloud Computing',
+    issuer: 'Infosys',
+    date: '2025',
+    description: 'Successfully completed the "Introduction to Cloud Computing" course by Infosys.',
+    proofImage:
+      'Certificates\\Introduction to Cloud Computing.jpg',
+  },
+  {
+    title: 'Data Analytics using Excel',
+    issuer: 'Upgrad',
+    date: '2025',
+    description: 'successfully completed the Data Analysis using Excel course from upGrad.',
+    proofImage:
+      'Certificates\\Data Analytics using Excel.jpg',
+  },
+  {
+    title: 'Python Fundamentals',
+    issuer: 'Infosys',
+    date: '2025',
+    description: 'I have successfully completed the Python Fundamentals course from Infosys Springboard.',
+    proofImage:
+      'Certificates\\Python Fundamentals.jpg',
+  },
+  {
+    title: 'Presentation Creation',
     issuer: 'Coursera',
     date: '2025',
-    description: 'Verified certificate for completing a full modern front-end development program.',
+    description: 'Successfully upskilled in the "Presentation Creation" course by Coursera.',
     proofImage:
-      'https://via.placeholder.com/960x640.png?text=Front-End+Web+Developer+Certificate',
+      'Certificates\\Presentation Creation.jpg',
   },
   {
-    title: 'UI / UX Design Essentials',
-    issuer: 'Google',
-    date: '2024',
-    description: 'Practical design workflows, accessibility best practices, and product thinking.',
-    proofImage:
-      'https://via.placeholder.com/960x640.png?text=UI+%2F+UX+Design+Essentials',
-  },
-  {
-    title: 'JavaScript Algorithms',
-    issuer: 'freeCodeCamp',
-    date: '2024',
-    description: 'Completed advanced JavaScript exercises and algorithmic problem solving.',
-    proofImage:
-      'https://via.placeholder.com/960x640.png?text=JavaScript+Algorithms+Certificate',
-  },
+    title: 'SQL for Analytics',
+    issuer: 'Devtown',
+    date: '2025',
+    description: 'Verified certificate for completing a full Bootcamp SQL FOR ANALYST: QUERY YOUR WAY TO INSIGHTS program.',
+    proofImage: 
+    'Certificates\\SQL for Analyst.jpg',
+  }
 ];
 
 const projects = [
   {
-    title: 'Launchpad Dashboard',
-    category: 'Web App',
-    summary: 'A dashboard interface for tracking product launches, metrics, and team tasks.',
+    title: 'Weather Dashboard',
+    category: 'Dashboard',
+    summary: 'A dashboard interface for tracking weather conditions, forecasts, and related information.',
     details:
-      'Built using a modern front-end stack with responsive components, custom data visualizations, and a polished workflow for collaborating across teams.',
+      'Built using a modern front-end stack with responsive components, and live weather data visualizations.',
     tags: ['Design System', 'Responsive', 'Data Driven'],
   },
   {
-    title: 'Brand Identity Website',
-    category: 'Brand',
-    summary: 'A premium landing page to showcase brand positioning, storytelling, and service offerings.',
+    title: 'Acadence',
+    category: 'Web App',
+    summary: 'A modern web application for Planning academic schedules, for a steady and calm semester.',
     details:
-      'Designed and developed a fast-loading, animated brand experience with visual hierarchy, motion, and curated UX for conversion.',
-    tags: ['Interaction', 'Animation', 'Marketing'],
+      'Designed and developed a web application to help students plan their academic schedules and syllabus along with their time management efficiently.',
+    tags: ['Interaction', 'Ai', 'Academic Planning'],
   },
   {
-    title: 'Certification Portal',
+    title: 'Photography Portfolio',
     category: 'Dashboard',
-    summary: 'A streamlined portal for managing certificates, course progress, and achievement milestones.',
+    summary: 'A visually rich portfolio showcasing photography work, galleries.',
     details:
-      'Implemented searchable certification cards, progress tracking, and a responsive dashboard tailored for professional development.',
+      'Implemented searchable photography galleries with responsive design with professional aesthetics.',
     tags: ['UX Research', 'Front-End', 'Accessibility'],
   },
   {
     title: 'Portfolio Showcase',
-    category: 'Web App',
-    summary: 'A dynamic portfolio site highlighting featured work, skills, and contact details.',
+    category: 'Dashboard',
+    summary: 'A dynamic portfolio site highlighting featured work, Skills, certificates, and Projects.',
     details:
-      'Created a modular portfolio platform with project filters, interactive cards, and a strong brand identity.',
+      'Created a modular portfolio platform with project filters, interactive cards, Fun games,and a strong self identity.',
     tags: ['Personal', 'UI Design', 'Performance'],
   },
 ];
@@ -78,7 +118,6 @@ const modalContent = document.getElementById('modalContent');
 const closeModal = document.getElementById('closeModal');
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
-const certificateGameBtn = document.getElementById('certificateGameBtn');
 const certificateGameProgress = document.getElementById('certificateGameProgress');
 const certificateContent = document.getElementById('certificateContent');
 const certificateSection = document.getElementById('certificates');
@@ -96,6 +135,8 @@ const certificateModalOverlay = document.getElementById('certificateModalOverlay
 const certificateModalImage = document.getElementById('certificateModalImage');
 const certificateModalTitle = document.getElementById('certificateModalTitle');
 const certificateModalClose = document.getElementById('certificateModalClose');
+const contactForm = document.getElementById('contactForm');
+const contactFormStatus = document.getElementById('contactFormStatus');
 
 function buildSkills() {
   skillsGrid.innerHTML = skills
@@ -265,6 +306,62 @@ function setupCustomCursor() {
   });
 }
 
+function setupScrollSphere() {
+  const sphere = document.querySelector('.scroll-sphere');
+  if (!sphere) return;
+
+  let ticking = false;
+  const updateSphere = () => {
+    const scrollProgress = window.scrollY / Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const sphereY = scrollProgress * Math.min(window.innerHeight * 1.7, 1100) - window.innerHeight * 0.35;
+    sphere.style.setProperty('--sphere-y', `${sphereY}px`);
+    sphere.style.setProperty('--sphere-rotation', `${scrollProgress * 180}deg`);
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateSphere);
+      ticking = true;
+    }
+  }, { passive: true });
+  window.addEventListener('pointermove', (event) => {
+    const offset = (event.clientX / window.innerWidth - 0.5) * 26;
+    sphere.style.setProperty('--sphere-x', `${offset}px`);
+  }, { passive: true });
+  updateSphere();
+}
+
+function setupGlitchHeadings() {
+  document.querySelectorAll('h1, .section-heading h2, .contact-grid h2').forEach((heading) => {
+    heading.classList.add('glitch-heading');
+  });
+}
+
+function setupContactForm() {
+  if (!contactForm || !contactFormStatus) return;
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+
+    if (!name || !email || !message) {
+      contactFormStatus.textContent = 'Please complete all fields before sending.';
+      contactFormStatus.className = 'contact-form-status is-error';
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    contactFormStatus.textContent = 'Opening your email app with the message ready to send...';
+    contactFormStatus.className = 'contact-form-status is-success';
+    window.location.href = `mailto:soumyajitpaul1947@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
+
 function setupSocialDoors() {
   socialDoors.forEach((door) => {
     door.addEventListener('click', () => {
@@ -381,7 +478,7 @@ function setupSectionGames() {
     certificateCodeInput.classList.add('is-success');
     certificateGameProgress.textContent = 'Unlocked! Certificates are ready.';
     animateSectionReveal(certificateContent);
-    certificateGameBtn?.closest('.section-unlock-overlay')?.classList.add('fade-out');
+    certificateCodeBtn?.closest('.section-unlock-overlay')?.classList.add('fade-out');
   };
 
   const validateCertificateCode = () => {
@@ -461,6 +558,9 @@ function init() {
   setupSectionGames();
   setupCertificateProofPopups();
   setupCustomCursor();
+  setupScrollSphere();
+  setupGlitchHeadings();
+  setupContactForm();
   setupSocialDoors();
   setupCertificateCarousel();
   setupContactUnlock();

@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scroll-sphere" aria-hidden="true">
+      <span class="sphere-core"></span>
+      <span class="sphere-ring sphere-ring-one"></span>
+      <span class="sphere-ring sphere-ring-two"></span>
+      <span class="sphere-particle sphere-particle-one"></span>
+      <span class="sphere-particle sphere-particle-two"></span>
+    </div>
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#home">Soumyajit</a>
@@ -65,7 +72,7 @@
                   <span>Design tools</span>
                 </div>
                 <div>
-                  <strong>7+</strong>
+                  <strong>5+</strong>
                   <span>Completed projects</span>
                 </div>
               </div>
@@ -89,12 +96,12 @@
         </div>
         <div class="container section-unlock-overlay" id="certificateUnlock">
           <p class="unlock-title">Unlock certificate vault</p>
-          <p class="unlock-description">Type the code line below to reveal your certificates.</p>
+          <p class="unlock-description">Type the code line below to reveal the certificates.</p>
           <div class="code-game-row">
             <input class="code-game-input" id="certificateCodeInput" type="text" placeholder="console.log('cert')" aria-label="Enter code to unlock certificates" />
             <button class="button button-primary" id="certificateCodeBtn" type="button">Unlock</button>
           </div>
-          <p class="unlock-progress" id="certificateGameProgress">Hint: use console.log and the word cert.</p>
+          <p class="unlock-progress" id="certificateGameProgress">Hint: use console.log and the word ('cert').</p>
         </div>
         <div class="section-inner locked" id="certificateContent">
           <div class="container certificate-carousel">
@@ -142,20 +149,21 @@
               <a href="#projects">Explore projects</a>
             </div>
           </div>
-          <form class="contact-form" action="mailto:soumyajitpaul1947@gmail.com" method="post" enctype="text/plain">
+          <form class="contact-form" id="contactForm">
             <label>
               Name
-              <input type="text" placeholder="Your name" required />
+              <input id="contactName" name="name" type="text" placeholder="Your name" autocomplete="name" required />
             </label>
             <label>
               Email
-              <input type="email" placeholder="your@email.com" required />
+              <input id="contactEmail" name="email" type="email" placeholder="your@email.com" autocomplete="email" required />
             </label>
             <label>
               Message
-              <textarea rows="6" placeholder="Tell me about your project"></textarea>
+              <textarea id="contactMessage" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
             </label>
             <button class="button button-primary" type="submit">Send Message</button>
+            <p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>
