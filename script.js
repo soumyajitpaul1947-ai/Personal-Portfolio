@@ -12,7 +12,7 @@ const certificates = [
     date: '2026',
     description: 'Successfully completed the "Machine Learning with Python" course by Devtown.',
     proofImage:
-      'Certificates\\ML mastery.jpg',
+      'Certificates/ML Mastery.jpg',
   },
   {
     title: 'Prompt Engineering',
@@ -20,7 +20,7 @@ const certificates = [
     date: '2025',
     description: 'Certificate for successfully completing the “Prompt Engineering for Developers” course from Infosys Springboard.',
     proofImage:
-      'Certificates\\Prompt Engineering.jpg',
+      'Certificates/Prompt Engineering.jpg',
   },
   {
     title: 'Vibe Coding 101',
@@ -28,7 +28,7 @@ const certificates = [
     date: '2025',
     description: 'Completed "Vibe Coding 101 with Replit" by Replit.',
     proofImage:
-      'Certificates\\Vibe coding 101.jpg',
+      'Certificates/Vibe coding 101.png',
   },
   {
     title: 'Introduction to Cloud Computing',
@@ -36,7 +36,7 @@ const certificates = [
     date: '2025',
     description: 'Successfully completed the "Introduction to Cloud Computing" course by Infosys.',
     proofImage:
-      'Certificates\\Introduction to Cloud Computing.jpg',
+      'Certificates/Introduction to Cloud Computing.jpg',
   },
   {
     title: 'Data Analytics using Excel',
@@ -44,7 +44,7 @@ const certificates = [
     date: '2025',
     description: 'successfully completed the Data Analysis using Excel course from upGrad.',
     proofImage:
-      'Certificates\\Data Analytics using Excel.jpg',
+      'Certificates/Data Analysis for Excel.jpg',
   },
   {
     title: 'Python Fundamentals',
@@ -52,7 +52,7 @@ const certificates = [
     date: '2025',
     description: 'I have successfully completed the Python Fundamentals course from Infosys Springboard.',
     proofImage:
-      'Certificates\\Python Fundamentals.jpg',
+      'Certificates/Python Fundamentals.jpg',
   },
   {
     title: 'Presentation Creation',
@@ -60,7 +60,7 @@ const certificates = [
     date: '2025',
     description: 'Successfully upskilled in the "Presentation Creation" course by Coursera.',
     proofImage:
-      'Certificates\\Presentation Creation.jpg',
+      'Certificates/Presentation Creation.jpg',
   },
   {
     title: 'SQL for Analytics',
@@ -68,7 +68,7 @@ const certificates = [
     date: '2025',
     description: 'Verified certificate for completing a full Bootcamp SQL FOR ANALYST: QUERY YOUR WAY TO INSIGHTS program.',
     proofImage: 
-    'Certificates\\SQL for Analyst.jpg',
+      'Certificates/SQL for Analyst.jpg',
   }
 ];
 
@@ -383,31 +383,7 @@ function setupSocialDoors() {
 }
 
 function setupCertificateCarousel() {
-  const carousel = document.querySelector('.certificate-carousel');
-  const grid = document.querySelector('.certificates-grid');
-  if (!carousel || !grid) return;
-
-  const updateRotation = () => {
-    const rect = carousel.getBoundingClientRect();
-    const center = rect.top + rect.height / 2;
-    const distance = window.innerHeight / 2 - center;
-    const rotation = Math.max(Math.min(distance / 18, 28), -28);
-    grid.style.transform = `rotateY(${rotation}deg)`;
-  };
-
-  window.addEventListener('scroll', updateRotation);
-  carousel.addEventListener('mousemove', (event) => {
-    const rect = carousel.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-    const xDeg = (x - 0.5) * 18;
-    const yDeg = (y - 0.5) * -14;
-    grid.style.transform = `rotateX(${yDeg}deg) rotateY(${xDeg}deg)`;
-  });
-
-  carousel.addEventListener('mouseleave', () => {
-    grid.style.transform = 'rotateY(0deg)';
-  });
+  // 3D tilt effects removed to ensure a stable layout and prevent vibrating on hover
 }
 
 function setupCertificateProofPopups() {
